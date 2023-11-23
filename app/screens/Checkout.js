@@ -10,9 +10,6 @@ import TextList from '../components/TextList'
 import Padder from '../components/Padder'
 import Toast from 'react-native-root-toast';
 
-// import { CardField, useStripe, useConfirmPayment} from '@stripe/stripe-react-native'
-// import { url } from '../config/serverurl'
-
 // Firebase Imports
 import { app } from '../config/firebase'
 import { getDatabase, ref, set, push } from 'firebase/database'
@@ -20,9 +17,6 @@ import { tablenames } from '../config/tables'
 
 export default function Checkout({ navigation }) {
     const state = useContext(Context)
-    // const [cardDetails, setCardDetails] = useState()
-    // const {confirmPayment} = useStripe()
-    // const {confirmPayment, loading} = useConfirmPayment()
     const [total, setTotal] = useState(0)
 
     // Firebase
@@ -45,23 +39,6 @@ export default function Checkout({ navigation }) {
             )
         })
     })
-
-    // const fetchPaymentIntent = async() => {
-    //     const context = {
-    //         headers: {
-    //             "Content-Type": "application/json"
-    //         },
-    //         method: "POST",
-    //         body: JSON.stringify({total: (total*100)})
-    //     }
-    //     try{
-    //         const response = await (await fetch(url, context)).json()
-    //         const { clientSecret, error } = response
-    //         return { clientSecret, error }
-    //     }catch(e){
-    //         console.log(e.message)
-    //     }
-    // }
 
     const handlePayment = async() => {
         const contact = {
@@ -96,66 +73,6 @@ export default function Checkout({ navigation }) {
             state.setCart([])
             navigation.navigate('Products', {resetFilter: true})
         })
-
-        // if(!cardDetails?.complete || !state.contact.email){
-        //     Toast.show('Card details or email is not completed', {duration: Toast.durations.LONG, position: Toast.positions.CENTER})
-        //     return
-        // }
-
-        // const billingDetails = {
-        //     email:  state.contact.email
-        // }
-
-        // try{
-        //     const {clientSecret, error} = await fetchPaymentIntent()
-        //     if(error){
-        //         Toast.show(error, {duration: Toast.durations.LONG, position: Toast.positions.CENTER})
-        //     }else{
-        //         const {paymentIntent, error} = await confirmPayment(clientSecret, {
-        //             paymentMethodType: 'Card',
-        //             paymentMethodData: {billingDetails: billingDetails}
-        //         })
-        //         if(error){
-        //             Toast.show(`Payment confirmation error - ${error.message}`, {duration: Toast.durations.LONG, position: Toast.positions.CENTER})
-        //         }else if(paymentIntent){
-        //             const contact = {
-        //                 name: `${state.contact.firstname} ${state.contact.lastname}`,
-        //                 email: state.contact.email,
-        //                 address: state.contact.address,
-        //                 contact: state.contact.contact
-        //             }
-        //             const order = { 
-        //                 amount: total, 
-        //                 cart: state.cart, 
-        //                 contact: contact, 
-        //                 paymentInfo: paymentIntent,
-        //                 date: new Date().toLocaleDateString() 
-        //             }
-        //             const updateObj = {
-        //                 ...state.contact, 
-        //                 order: state.contact?.order ? [...state.contact.order, order] : [order]
-        //             }
-        //             push(ref(db, tablenames.orders), order)
-        //             set(ref(db, `${tablenames.login}/${updateObj.id}`), updateObj)
-        //             .then(()=>{
-        //                 Toast.show('Payment successful', {
-        //                     duration: Toast.durations.LONG, position: Toast.positions.CENTER
-        //                 })
-        //             })
-        //             .catch(()=>{
-        //                 Toast.show('Payment successful but failed to record transaction', {
-        //                     duration: Toast.durations.LONG, position: Toast.positions.CENTER
-        //                 })
-        //             })
-        //             .finally(()=>{
-        //                 state.setCart([])
-        //                 navigation.navigate('Products')
-        //             })
-        //         }
-        //     }
-        // }catch(e){
-        //     Toast.show(e.message, {duration: Toast.durations.LONG, position: Toast.positions.CENTER})
-        // }
     }
 
     useEffect(()=>{
@@ -167,11 +84,8 @@ export default function Checkout({ navigation }) {
         <View style={styles.container}>
 
             <View style={styles.view}>
-
                 <Padder height={20} />
-
                 <View style={{ width: '90%', alignSelf: 'center' }}>
-
                     <View style={styles.contact}>
                         <View>
                             <Ionicons name="radio-button-on" size={24} color="black" />
@@ -189,35 +103,8 @@ export default function Checkout({ navigation }) {
                             </TouchableOpacity>
                         </View>
                     </View>
-
                     <Padder />
-
-                    {/* <View>
-                        <CardField
-                            // postalCodeEnabled={true}
-                            placeholders={{
-                                number: '4242 4242 4242 4242',
-                            }}
-                            cardStyle={{
-                                backgroundColor: '#FFFFFF',
-                                textColor: '#000000',
-                            }}
-                            style={{
-                                width: '100%',
-                                height: 50,
-                                marginVertical: 30,
-                            }}
-                            onCardChange={(cardDetails) => {
-                                setCardDetails(cardDetails)
-                            }}
-                            onFocus={(focusedField) => {
-                                // console.log('focusField', focusedField);
-                            }}
-                        />
-                    </View> */}
-
                 </View>
-
             </View>
 
             <View style={styles.checkoutButton}>

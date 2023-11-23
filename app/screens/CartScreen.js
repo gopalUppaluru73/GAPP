@@ -44,23 +44,6 @@ export default function CartScreen({ navigation }) {
     const minusPress = index => {
         if(cart.length === 0) return
         const prodItem = state.cart[index]
-        // if(cart.length === 1 && prodItem['qty'] - 1 === 0){
-        //     const c = cart.filter(item=>item.id !== prodItem.id)
-        //     state.setCart(c)
-        //     state.setCartQtyZero()
-        //     Toast.show('Cart is empty', {duration: Toast.durations.LONG, position: Toast.positions.CENTER})
-        //     navigation.navigate('Products')
-        // }else{
-        //     const c = cart.map((item, i)=>{
-        //         if(i === index){
-        //             if(item['qty'] !== 0){
-        //                 item['qty'] -= 1 
-        //             }
-        //         }
-        //         return item
-        //     })
-        //     state.setCart(c)
-        // }
         const c = cart.map((item, i)=>{
             if(i === index){
                 if(item['qty'] !== 0){

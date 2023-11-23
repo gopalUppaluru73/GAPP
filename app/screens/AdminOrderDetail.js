@@ -84,9 +84,10 @@ export default function AdminOrderDetail({navigation, route}) {
 
 const styles = StyleSheet.create({
     arrowLeft: {
-        position: 'relative',
+        position: 'absolute',
         top: 20,
         left: 20,
+        zIndex: 999
     },
     arrowview: {
         width: 40, 

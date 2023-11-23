@@ -39,7 +39,7 @@ export default function Products({ navigation, route }) {
                 setAllProducts([])
             }
         })
-
+        // To Reset filter on products screen from checkOutScreen
         // if(route.params.resetFilter){
         //     setSelectedIndex(undefined)
         // }
