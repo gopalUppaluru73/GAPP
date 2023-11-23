@@ -1,0 +1,1 @@
+export const type = ['Fruit', 'Food', 'Dessert', 'Drink']
