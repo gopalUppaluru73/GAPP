@@ -65,7 +65,7 @@ export default function Route() {
         />
         <Stack.Screen name="OrderDetail" component={OrderDetail} 
           options={{
-            title: 'OrderDetail'
+            title: 'Order Details'
           }} 
         />
         <Stack.Screen name="EditDetails" component={EditDetails} 

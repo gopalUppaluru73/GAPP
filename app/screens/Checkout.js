@@ -12,12 +12,13 @@ import Toast from 'react-native-root-toast';
 
 // Firebase Imports
 import { app } from '../config/firebase'
-import { getDatabase, ref, set, push } from 'firebase/database'
+import { getDatabase, ref, set, push, update } from 'firebase/database'
 import { tablenames } from '../config/tables'
 
 export default function Checkout({ navigation }) {
     const state = useContext(Context)
     const [total, setTotal] = useState(0)
+    const [loading, setLoading] = useState(false)
 
     // Firebase
     const db = getDatabase(app)
@@ -60,6 +61,7 @@ export default function Checkout({ navigation }) {
         push(ref(db, tablenames.orders), order)
         set(ref(db, `${tablenames.login}/${updateObj.id}`), updateObj)
         .then(()=>{
+            state.setContact(updateObj)
             Toast.show('Payment successful', {
                 duration: Toast.durations.LONG, position: Toast.positions.CENTER
             })

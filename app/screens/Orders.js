@@ -7,6 +7,7 @@ import { Context } from '../config/Provider'
 import { Ionicons } from '@expo/vector-icons'
 import { colors } from '../config/colors'
 
+
 export default function Orders({ navigation }) {
     const state = useContext(Context)
     const [orders, setOrders] = useState(state.contact?.order ?? [])
@@ -25,13 +26,11 @@ export default function Orders({ navigation }) {
         if(state.contact?.order){
             const arr = state.contact.order.map(item=>{
                 let [mm, dd, yy] = item.date.split('/')
-                // console.log(new Date(`${yy}-${mm}-${dd}`).getTime())
                 let el = {...item, dateId: new Date(`${yy}-${mm}-${dd}`).getTime()}
                 return el
             })
             arr.sort((a, b) => b.dateId - a.dateId)
             setOrders(arr)
-            // console.log(arr)
         }
     }, [])
 

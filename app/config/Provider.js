@@ -1,8 +1,4 @@
-import { createContext, useState, useEffect } from 'react'
-
-import { app } from '../config/firebase'
-import { getDatabase, ref, onValue } from 'firebase/database'
-import { tablenames } from '../config/tables'
+import { createContext, useState } from 'react'
 
 export const Context = createContext({
     contact: null,
@@ -37,25 +33,7 @@ export default function Provider({ children }){
         setCartQty(0)
         setTotalFee(0)
     }
-    // Firebase
-    const db = getDatabase(app)
-    const dbref = ref(db, tablenames.login)
-    useEffect(()=>{
-        onValue(dbref, snapshot=>{
-            if(snapshot.exists()){
-                const user_data = snapshot.val()
-                const keys = Object.keys(user_data)
-                const arr = []
-                keys.forEach(key=>arr.push({...user_data[key], id: key}))
-                if(contact){
-                    const findMe = arr.find(item=>item.email.toLowerCase() === contact.email.toLowerCase())
-                    if(findMe){
-                        set_Contact(findMe)
-                    }
-                }
-            }
-        })
-    }, [])
+    
     return (
         <Context.Provider 
             value={{

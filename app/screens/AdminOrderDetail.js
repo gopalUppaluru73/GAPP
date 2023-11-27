@@ -47,7 +47,7 @@ export default function AdminOrderDetail({navigation, route}) {
                     </View>
                 </TouchableOpacity>
                 <View style={{ alignItems: 'center' }}><Logo /></View>
-                <Text style={{ textAlign: 'center', fontSize: 22, color: '#fff' }}>Order Details - {route.params.date}</Text>
+                <Text style={{ textAlign: 'center', fontSize: 22, color: '#fff' }}>User Order Details - {route.params.date}</Text>
                 <Padder height={20} />
             </View>
 
