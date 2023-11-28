@@ -26,6 +26,25 @@
     },
     "web": {
       "favicon": "./app/assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "3938cb91-075d-4a29-b51e-69163fd5b64e"
+      }
+    },
+    "plugins": [
+      [
+        "expo-updates",
+        {
+          "username": "gopaluppaluru"
+        }
+      ]
+    ],
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/3938cb91-075d-4a29-b51e-69163fd5b64e"
     }
   }
 }

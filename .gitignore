@@ -3,6 +3,9 @@
 # dependencies
 node_modules/
 
+# firbase
+app/config/firbase.js
+
 # Expo
 .expo/
 dist/
